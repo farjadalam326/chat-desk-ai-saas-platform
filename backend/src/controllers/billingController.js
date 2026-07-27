@@ -3,7 +3,7 @@ import { Workspace } from '../models/Workspace.js';
 import { Conversation } from '../models/Conversation.js';
 import { Document } from '../models/Document.js';
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY || 'sk_test_51QXIQCCFm4vn94cvZk7nvUXSfw9TmJAp0xTHLgz1X7QS5uFL8n4AXAKMBKe9sNtB1VLXqDVe2wLXsPD0s1cgPE3g00B35M7N8F';
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripe = new Stripe(stripeSecretKey);
 
 export const getUsage = async (req, res, next) => {
