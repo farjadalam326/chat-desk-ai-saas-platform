@@ -6,7 +6,8 @@ import { Workspace } from '../models/Workspace.js';
 import { WidgetConfig } from '../models/WidgetConfig.js';
 import crypto from 'crypto';
 
-const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '719064177864-19ct5oi8eoh5riombodk6k7nhqpihngq.apps.googleusercontent.com';
+const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 // Generate JWT token containing userId & workspaceId for multi-tenant isolation
 const generateToken = (user) => {
@@ -268,19 +269,19 @@ export const googleAuth = async (req, res, next) => {
     if (credential) {
       const ticket = await googleClient.verifyIdToken({
         idToken: credential,
-        audience: process.env.GOOGLE_CLIENT_ID,
+        audience: GOOGLE_CLIENT_ID,
       });
       payload = ticket.getPayload();
     } else if (code) {
       const oauth2Client = new OAuth2Client(
-        process.env.GOOGLE_CLIENT_ID,
+        GOOGLE_CLIENT_ID,
         process.env.GOOGLE_CLIENT_SECRET,
         'postmessage'
       );
       const { tokens } = await oauth2Client.getToken(code);
       const ticket = await googleClient.verifyIdToken({
         idToken: tokens.id_token,
-        audience: process.env.GOOGLE_CLIENT_ID,
+        audience: GOOGLE_CLIENT_ID,
       });
       payload = ticket.getPayload();
     }

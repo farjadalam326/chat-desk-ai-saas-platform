@@ -41,7 +41,7 @@ export const SignUpPage: React.FC = () => {
   };
 
   React.useEffect(() => {
-    const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || '719064177864-19ct5oi8eoh5riombodk6k7nhqpihngq.apps.googleusercontent.com';
     if (!googleClientId) return;
 
     const initGoogle = () => {
