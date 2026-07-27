@@ -8,11 +8,10 @@ export const connectDB = async () => {
     return;
   }
 
-  const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI;
-  if (!mongoUri) {
-    console.error("[MongoDB Error] MONGODB_URI or MONGO_URI environment variable is missing!");
-    throw new Error("MONGODB_URI environment variable is missing in serverless environment");
-  }
+  const mongoUri =
+    process.env.MONGODB_URI ||
+    process.env.MONGO_URI ||
+    'mongodb+srv://farjadalam326:Pakistan10@aichatdesk.zzlb0xd.mongodb.net/aichatdesk?retryWrites=true&w=majority&appName=AIChatDesk';
 
   try {
     const conn = await mongoose.connect(mongoUri);

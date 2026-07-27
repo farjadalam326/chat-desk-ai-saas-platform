@@ -16,7 +16,8 @@ export const authenticateToken = async (req, res, next) => {
       });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const secret = process.env.JWT_SECRET || 'super_secret_jwt_key_chatdesk_ai_saas_2026_987654321';
+    const decoded = jwt.verify(token, secret);
     
     // Attach decoded user info to request
     req.user = decoded; // Contains userId, email, role, workspaceId

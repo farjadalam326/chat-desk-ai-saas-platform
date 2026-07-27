@@ -10,6 +10,7 @@ const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Generate JWT token containing userId & workspaceId for multi-tenant isolation
 const generateToken = (user) => {
+  const secret = process.env.JWT_SECRET || 'super_secret_jwt_key_chatdesk_ai_saas_2026_987654321';
   return jwt.sign(
     {
       userId: user._id,
@@ -17,7 +18,7 @@ const generateToken = (user) => {
       role: user.role,
       workspaceId: user.workspaceId,
     },
-    process.env.JWT_SECRET,
+    secret,
     { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
   );
 };
