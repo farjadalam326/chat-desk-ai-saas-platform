@@ -14,7 +14,10 @@ export const connectDB = async () => {
     'mongodb+srv://farjadalam326:Pakistan10@aichatdesk.zzlb0xd.mongodb.net/aichatdesk?retryWrites=true&w=majority&appName=AIChatDesk';
 
   try {
-    const conn = await mongoose.connect(mongoUri);
+    const conn = await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 5000,
+    });
     isConnected = true;
     console.log(`[MongoDB] Connected successfully: ${conn.connection.host}`);
   } catch (error) {
