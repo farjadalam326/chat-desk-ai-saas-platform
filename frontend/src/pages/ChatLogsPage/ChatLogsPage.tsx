@@ -90,7 +90,9 @@ export const ChatLogsPage: React.FC = () => {
 
   // Connect to Socket.io server
   useEffect(() => {
-    const socket = io("http://localhost:5000/ws/chat", {
+    const socketUrl = import.meta.env.VITE_SOCKET_URL || (typeof window !== "undefined" ? window.location.origin : "");
+    const socket = io(socketUrl, {
+      path: "/ws/chat",
       transports: ["websocket", "polling"],
     });
 
