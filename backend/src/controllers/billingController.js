@@ -3,7 +3,7 @@ import { Workspace } from '../models/Workspace.js';
 import { Conversation } from '../models/Conversation.js';
 import { Document } from '../models/Document.js';
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder_key_for_dev_mode';
 const stripe = new Stripe(stripeSecretKey);
 
 export const getUsage = async (req, res, next) => {

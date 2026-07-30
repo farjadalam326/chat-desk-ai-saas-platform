@@ -1,11 +1,9 @@
+import "dotenv/config";
 import http from "http";
 import { Server } from "socket.io";
-import dotenv from "dotenv";
 import app from "./app.js";
 import { connectDB } from "./config/db.js";
 import { setupChatSockets } from "./sockets/chatSocket.js";
-
-dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
